@@ -1,0 +1,36 @@
+--table a
+select trip_id, start_date, subscriber_type, start_station_name, start_station_id from bigquery-public-data.san_francisco.bikeshare_trips
+
+--table b
+select station_id, name, landmark from bigquery-public-data.san_francisco.bikeshare_stations
+
+--mencoba syntax count
+select count (trip_id) from bigquery-public-data.san_francisco.bikeshare_trips
+
+select Table_A.trip_id, Table_A.start_date, Table_A.subscriber_type, Table_B.landmark
+from bigquery-public-data.san_francisco.bikeshare_trips as Table_A
+join bigquery-public-data.san_francisco.bikeshare_stations as Table_B on Table_A.start_station_id = Table_B.station_id
+
+--data join table a dan table b pada Q1 2016
+select Table_A.trip_id, Table_A.start_date, Table_A.subscriber_type, Table_B.landmark
+from bigquery-public-data.san_francisco.bikeshare_trips as Table_A
+join bigquery-public-data.san_francisco.bikeshare_stations as Table_B on Table_A.start_station_id = Table_B.station_id
+where start_date between timestamp('2016-01-01 00:00:01 UTC') and timestamp('2016-03-31 23:59:59 UTC') AND subscriber_type = 'Subscriber' AND landmark = 'Redwood City'
+
+--menghitung jumlah peminjam sepeda pada Q1-2016 sesuai dengan instruksi
+select count (trip_id) quartal_pertama
+from bigquery-public-data.san_francisco.bikeshare_trips as Table_A
+join bigquery-public-data.san_francisco.bikeshare_stations as Table_B on Table_A.start_station_id = Table_B.station_id
+where start_date between timestamp('2016-01-01 00:00:01 UTC') and timestamp('2016-03-31 23:59:59 UTC') AND subscriber_type = 'Subscriber' AND landmark = 'Redwood City'
+
+--data join table a dan table b pada Q2 2016
+select Table_A.trip_id, Table_A.start_date, Table_A.subscriber_type, Table_B.landmark
+from bigquery-public-data.san_francisco.bikeshare_trips as Table_A
+join bigquery-public-data.san_francisco.bikeshare_stations as Table_B on Table_A.start_station_id = Table_B.station_id
+where start_date between timestamp('2016-04-01 00:00:01 UTC') and timestamp('2016-06-30 23:59:59 UTC') AND subscriber_type = 'Subscriber' AND landmark = 'Redwood City'
+
+--menghitung jumlah peminjam sepeda pada Q2-2016 sesuai dengan instruksi
+select count (trip_id) Quartal_kedua
+from bigquery-public-data.san_francisco.bikeshare_trips as Table_A
+join bigquery-public-data.san_francisco.bikeshare_stations as Table_B on Table_A.start_station_id = Table_B.station_id
+where start_date between timestamp('2016-04-01 00:00:01 UTC') and timestamp('2016-06-30 23:59:59 UTC') AND subscriber_type = 'Subscriber' AND landmark = 'Redwood City'
